@@ -1,6 +1,6 @@
-# Simple example project
+# My transaction example project
 
-Simple project demonstrating the use of [dgraph-tonic](https://github.com/selmeci/dgraph-tonic), the async RUST client for Dgraph.
+My transaction project demonstrating the use of transaction as struct parameter.
 
 ## Running
 

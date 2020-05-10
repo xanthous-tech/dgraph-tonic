@@ -40,10 +40,10 @@ impl<C: LazyChannel> LazyAclClient<C> {
                     let access_jwt = access_jwt.lock().unwrap();
                     MetadataValue::from_str(&access_jwt).expect("gRPC metadata")
                 };
-                req.metadata_mut().insert("accessjwt", token.clone());
+                req.metadata_mut().insert("accessjwt", token);
                 Ok(req)
             });
-            self.client.replace(client.to_owned());
+            self.client.replace(client);
         }
         Ok(())
     }
@@ -143,8 +143,7 @@ impl<S: IClient> ClientVariant<S> {
             .into_iter()
             .map(|client| {
                 let channel = client.channel();
-                let client = LazyAclClient::new(channel, Arc::clone(&access_jwt));
-                client
+                LazyAclClient::new(channel, Arc::clone(&access_jwt))
             })
             .collect::<Vec<LazyAclClient<S::Channel>>>();
         Ok(AclClient {

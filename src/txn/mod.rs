@@ -9,7 +9,7 @@ use crate::errors::DgraphError;
 use crate::stub::Stub;
 pub use crate::txn::best_effort::BestEffortTxn;
 pub use crate::txn::default::Txn;
-pub use crate::txn::mutated::{Mutate, MutatedTxn};
+pub use crate::txn::mutated::{Mutate, MutatedTxn, MutationResponse};
 pub use crate::txn::read_only::ReadOnlyTxn;
 use crate::IDgraphClient;
 use crate::{Request, Response, TxnContext};
@@ -66,11 +66,22 @@ impl<S: IState, C: ILazyClient> DerefMut for TxnVariant<S, C> {
     }
 }
 
+impl<S: IState, C: ILazyClient> TxnVariant<S, C> {
+    ///
+    /// Return new transaction of same variant with default state
+    ///
+    pub fn clone_and_reset(&mut self) -> Self {
+        let mut result = self.clone();
+        result.context = Default::default();
+        result
+    }
+}
+
 ///
 /// All Dgaph transaction types can performe a queries
 ///
 #[async_trait]
-pub trait Query {
+pub trait Query: Send + Sync {
     ///
     /// You can run a query by calling `txn.query(q)`.
     ///
