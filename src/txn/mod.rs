@@ -28,7 +28,7 @@ pub(crate) mod read_only;
 #[derive(Clone, Debug)]
 pub struct TxnState<C: ILazyClient> {
     stub: Stub<C>,
-    context: TxnContext,
+    pub context: TxnContext,
 }
 
 ///
