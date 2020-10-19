@@ -17,7 +17,7 @@ pub use crate::client::{
     AclTlsClient, TxnAclTls, TxnAclTlsBestEffort, TxnAclTlsMutated, TxnAclTlsReadOnly,
 };
 pub use crate::client::{
-    Client, ClientVariant, Http, IClient, Txn, TxnBestEffort, TxnMutated, TxnReadOnly,
+    Client, ClientVariant, Http, IClient, Txn, TxnBestEffort, TxnMutated, TxnReadOnly, ILazyClient
 };
 #[cfg(feature = "tls")]
 pub use crate::client::{Tls, TlsClient, TxnTls, TxnTlsBestEffort, TxnTlsMutated, TxnTlsReadOnly};

@@ -20,7 +20,7 @@ pub use crate::client::default::{
 };
 pub use crate::client::endpoints::Endpoints;
 use crate::client::lazy::ILazyChannel;
-pub(crate) use crate::client::lazy::ILazyClient;
+pub use crate::client::lazy::ILazyClient;
 #[cfg(feature = "tls")]
 pub use crate::client::tls::{
     Tls, TlsClient, TxnTls, TxnTlsBestEffort, TxnTlsMutated, TxnTlsReadOnly,
