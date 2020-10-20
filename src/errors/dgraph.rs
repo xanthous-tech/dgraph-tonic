@@ -1,11 +1,10 @@
 use anyhow::Error as Failure;
 use thiserror::Error as Fail;
-use serde::Serialize;
 
 ///
 /// Possible Dgraph errors
 ///
-#[derive(Serialize, Debug, Fail)]
+#[derive(Debug, Fail)]
 pub enum Error {
     #[error("Dgraph: Txn start mismatch")]
     StartTsMismatch,
